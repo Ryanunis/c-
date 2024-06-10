@@ -2,3 +2,6 @@
 sort(nums.begin(),nums.end())//默认升序排列
 sort(nums.begin(),nums.end(),greater<int>())//调用greater函数进行降序排列
 nums.size()//代表数组长度
+
+s2.push_back(x);//向量用push
+s1.insert(x);//集合为insert并自动进行排列和去重

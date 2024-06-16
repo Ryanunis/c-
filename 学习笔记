@@ -74,6 +74,68 @@ std::sort(students.begin(), students.end(), [](const Student &a, const Student &
 
 
 
+`emplace_back` 是 C++11 引入的一种 STL 容器方法，特别是用于 `std::vector` 等容器中。它的作用是直接在容器的末尾构造元素，相比于 `push_back`，它减少了不必要的拷贝或移动操作，提高了性能。
+
+### `emplace_back` 与 `push_back` 的区别
+- `push_back`: 向容器末尾添加一个元素。需要传递一个已经构造好的对象，如果传递的是临时对象，会涉及拷贝或移动构造。
+- `emplace_back`: 直接在容器末尾原地构造元素。它可以接受构造函数的参数，直接在容器内存中构造对象，避免了额外的拷贝或移动操作。
+
+### 示例
+假设我们有一个 `Student` 结构体：
+
+```cpp
+struct Student {
+    int id;
+    std::string name;
+    int math;
+    int english;
+    int chinese;
+    int total;
+    int rank;
+
+    Student(int id, std::string name, int math, int english, int chinese)
+        : id(id), name(name), math(math), english(english), chinese(chinese) {
+        total = math + english + chinese;
+    }
+};
+```
+
+我们希望将多个 `Student` 对象添加到一个 `std::vector` 中：
+#### 使用 `push_back`
+```cpp
+std::vector<Student> students;
+Student s(1, "John", 90, 85, 95);
+students.push_back(s);  // 需要拷贝或移动构造 s 对象
+```
+
+#### 使用 `emplace_back`
+
+```cpp
+std::vector<Student> students;
+students.emplace_back(1, "John", 90, 85, 95);  // 直接在 vector 内存中构造 Student 对象
+```
+### 详细解释
+
+1. **添加元素**:
+    ```cpp
+    students.emplace_back(id, name, math, english, chinese);
+    ```
+    - 使用 `emplace_back` 将每个学生直接构造到 `students` 向量的末尾。这避免了构造临时对象再拷贝或移动到向量中的开销。
+
+2. **排序和输出**:
+    - 使用 `std::sort` 对学生进行排序，并输出排名结果。使用 `std::setw` 确保输出对齐。
+
+### 性能优势
+
+- **减少拷贝**:
+  `emplace_back` 直接在容器内存中构造元素，避免了多余的拷贝或移动操作，从而提高性能。
+  
+- **简化代码**:
+  直接传递构造函数参数，代码更加简洁直观。
+
+综上所述，`emplace_back` 提供了一种高效的方式在容器末尾直接构造元素，在性能和代码可读性方面都优于 `push_back`。
+
+
 
 
 

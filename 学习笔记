@@ -32,3 +32,67 @@ string substr (size_t pos = 0, size_t len = npos) const;
 
 //size_t 是一种无符号整数类型，主要用于表示对象的大小或数组的索引。它由标准库定义，具体实现因平台而异，
 //但始终是无符号的，以确保能够正确表示内存大小和索引范围。使用 size_t 可以提高代码的可移植性和安全性。
+
+
+sort函数
+主要有两种形式
+1默认排序
+template <class RandomIt>
+void sort(RandomIt first, RandomIt last);
+（按照升序对元素进行排序）
+2自定义比较函数的类型
+template <class RandomIt, class Compare>
+void sort(RandomIt first, RandomIt last, Compare comp);
+
+对自定义比较函数进行详细说明
+1普通函数
+bool compare(const Student &a, const Student &b) {
+    if (a.total != b.total)
+        return a.total < b.total;
+    return a.id < b.id;
+}
+
+std::sort(students.begin(), students.end(), compare);
+2函数对象（仿函数）
+struct Compare {
+    bool operator()(const Student &a, const Student &b) {
+        if (a.total != b.total)
+            return a.total < b.total;
+        return a.id < b.id;
+    }
+};
+
+std::sort(students.begin(), students.end(), Compare());
+3Lambda函数
+std::sort(students.begin(), students.end(), [](const Student &a, const Student &b) {
+    if (a.total != b.total)
+        return a.total < b.total;
+    return a.id < b.id;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

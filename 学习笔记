@@ -140,6 +140,27 @@ students.emplace_back(1, "John", 90, 85, 95);  // 直接在 vector 内存中构�
 
 
 
+multiset 是 C++ 标准模板库 (STL) 中的一种关联容器，它与 set 类似，但允许存储多个相同的元素。multiset 按照元素的键值自动排序，每个键值可以重复出现。
+
+下面是一些 multiset 的主要特点和用法：
+
+主要特点
+
+	1.	自动排序：multiset 中的元素总是按键值升序排列。
+	2.	允许重复：multiset 可以包含多个相同的元素。
+	3.	底层实现：通常基于平衡二叉树（如红黑树），因此插入、删除、查找操作的时间复杂度为 O(log n)。
+
+基本操作
+
+	•	插入元素：insert 方法插入元素，允许重复。
+	•	删除元素：erase 方法删除指定元素或特定位置的元素。
+	•	查找元素：find 方法查找元素，返回一个迭代器。
+	•	计数元素：count 方法返回指定元素的个数。
+
+1.	multiset<char> letters1(group1.begin(), group1.end()); 创建一个 multiset，将 group1 中的所有字母插入 letters1 中。
+2.	multiset<char> letters2(group2.begin(), group2.end()); 同样地，将 group2 中的所有字母插入 letters2 中。
+
+letters2.count(c) 返回字母 c 在 letters2 中的出现次数。
 
 
 
